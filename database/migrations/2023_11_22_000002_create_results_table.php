@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('results', function (Blueprint $table) {
             $table->id();
-            $table->integer('top');
-            $table->integer('left');
-            $table->integer('bottom');
-            $table->integer('right');
+            $table->integer('top')->default(0);
+            $table->integer('left')->default(0);
+            $table->integer('bottom')->default(0);
+            $table->integer('right')->default(0);
             $table->string('angle')->nullable();
             $table->string('distance')->nullable();
             $table->string('subject')->nullable();

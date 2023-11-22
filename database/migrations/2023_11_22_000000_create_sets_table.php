@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('sets', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('description');
-            $table->string('instructions');
-            $table->integer('status');
+            $table->string('name')->nullable();
+            $table->string('description')->nullable();
+            $table->string('instructions')->nullable();
+            $table->integer('status')->default(0);
             $table->timestamps();
         });
     }

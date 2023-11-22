@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('images', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('path');
-            $table->string('type');
-            $table->integer('status');
+            $table->string('name')->nullable();
+            $table->string('path')->nullable();
+            $table->string('type')->nullable();
+            $table->integer('status')->default(0);
             $table->timestamps();
             $table->unsignedBigInteger('set_id');
             $table->foreign('set_id')
