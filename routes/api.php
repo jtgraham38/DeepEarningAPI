@@ -4,6 +4,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Api\SetController; 
+use App\Http\Controllers\Api\ImageController; 
+use App\Http\Controllers\Api\ResultController; 
 
 /*
 |--------------------------------------------------------------------------
