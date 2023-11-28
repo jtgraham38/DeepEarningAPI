@@ -17,13 +17,16 @@ class SetController extends Controller
         */
     public function store(Request $request)
     {
-        $data = $request->validate([
+        $validator = Validator::make(request()->all(), [
             'name'  => 'required|string',
             'description' => 'required|string',
             'instructions' => 'required|string',
             'status' => 'required|integer',
         ]);
-        $set = Set::create($data);
+        if ($validator->fails()) {
+            return response()->json(['error' => $validator->errors()], 422);
+        }
+        $set = Set::create($request->all());
         $set->save();
         return response()->json(['msg'=> 'Set created!', 'data'=> $set]);
     }
@@ -38,12 +41,15 @@ class SetController extends Controller
     {
         $set = Set::findOrFail($id);
 
-        $data = $request->validate([
+        $validator = Validator::make(request()->all(),[
             'name'  => 'string',
             'description' => 'string',
             'instructions' => 'string',
             'status' => 'integer',
         ]);
+        if ($validator->fails()) {
+            return response()->json(['error' => $validator->errors()], 422);
+        }
         
         $set->update($data);
         return response()->json(['msg'=> 'Set updated!', 'data'=> $set]);
