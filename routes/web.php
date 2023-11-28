@@ -16,3 +16,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('endpoints');
 });
+
+Route::get('/images/{image_name}', function(){
+    return view('image');
+});
