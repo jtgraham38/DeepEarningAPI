@@ -3,6 +3,8 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\Api\SetController; 
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -17,3 +19,15 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::resource('sets', SetController::class)->only([
+    'store', 'update', 'destroy'
+]);
+
+Route::resource('results', ResultController::class)->only([
+    'store', 'update', 'destroy'
+]);
+
+Route::resource('images', ImageController::class)->only([
+    'store', 'update', 'destroy'
+]);
