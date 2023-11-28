@@ -33,9 +33,18 @@ class SetController extends Controller
         * @param  int  $id
         * @return Response
         */
-    public function update($id)
+    public function update(Request $request, $id)
     {
-        //
+        $set = Set::findOrFail($id);
+
+        $data = $request->validate([
+            'name'  => 'string',
+            'description' => 'string',
+            'instructions' => 'string',
+            'status' => 'integer',
+        ]);
+        
+        $set->update($data);
     }
 
     /**
