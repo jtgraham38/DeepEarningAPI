@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
+use App\Models\Result;
+
 class ResultController extends Controller
 {
 
@@ -47,6 +49,7 @@ class ResultController extends Controller
         * @return Response
         */
         public function get($id){
-
+            $result = Result::findOrFail($id);
+            return $result->toJson();
         }
 }

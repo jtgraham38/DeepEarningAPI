@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
+use App\Models\Image;
+
 class ImageController extends Controller
 {
 
@@ -47,7 +49,8 @@ class ImageController extends Controller
         * @return Response
         */
         public function get($id){
-
+            $image = Image::findOrFail($id);
+            return $image->toJson();
         }
 
 }

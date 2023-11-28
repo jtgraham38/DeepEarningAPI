@@ -50,6 +50,6 @@ class SetController extends Controller
         */
     public function get($id){
         $set = Set::findOrFail($id);
-        return $set;
+        return $setn->toJson();
     }
 }
