@@ -21,7 +21,8 @@ return new class extends Migration
             $table->unsignedBigInteger('set_id');
             $table->foreign('set_id')
                 ->references('id')
-                ->on('sets');
+                ->on('sets')
+                ->onDelete('cascade');
         });
     }
 
