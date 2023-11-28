@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 use App\Models\Image;
 
@@ -17,14 +18,18 @@ class ImageController extends Controller
         */
     public function store(Request $request)
     {
-        $data = $request->validate([
+        
+        $validator = Validator::make(request()->all(),[
             'name'  => 'required|string',
             'path' => 'required|string',
             'type' => 'required|string',
             'status' => 'required|integer',
-            'set_id' => 'required|exists:users,id'
+            'set_id' => 'required|exists:sets,id'
         ]);
-        $image = Image::create($data);
+        if ($validator->fails()) {
+            return response()->json(['error' => $validator->errors()], 422);
+        }
+        $image = Image::create($request->all());
         $image->save();
 
         return response()->json(['msg'=> 'Image created!', 'data'=> $image]);
@@ -40,15 +45,19 @@ class ImageController extends Controller
     {
         $image = Image::findOrFail($id);
 
-        $data = $request->validate([
+        $validator = Validator::make(request()->all(), [
             'name'  => 'string',
             'path' => 'string',
             'type' => 'string',
             'status' => 'integer',
-            'set_id' => 'exists:users,id'
+            'set_id' => 'exists:sets,id'
         ]);
+        if ($validator->fails()) {
+            return response()->json(['error' => $validator->errors()], 422);
+        }
         
-        $image->update($data);
+        $image->update($request->all());
+        return response()->json(['msg'=> 'Image updated!', 'data'=> $image]);
     }
 
     /**
@@ -60,7 +69,8 @@ class ImageController extends Controller
     public function destroy($id)
     {
         $image = Image::findOrFail($id);
-        return $image->delete();
+        $image->delete();
+        return response()->json(['msg'=> 'Image deleted!']);
     }
 
 
