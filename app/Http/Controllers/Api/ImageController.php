@@ -40,4 +40,14 @@ class ImageController extends Controller
         //
     }
 
+    /**
+        * Get the jsonified version of the resource
+        *
+        * @param  int  $id
+        * @return Response
+        */
+        public function get($id){
+
+        }
+
 }

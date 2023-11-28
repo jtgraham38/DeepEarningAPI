@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
+use App\Models\Set;
+
 class SetController extends Controller
 {
 
@@ -40,4 +42,14 @@ class SetController extends Controller
         //
     }
 
+    /**
+        * Get the jsonified version of the resource
+        *
+        * @param  int  $id
+        * @return Response
+        */
+    public function get($id){
+        $set = Set::findOrFail($id);
+        return $set;
+    }
 }
