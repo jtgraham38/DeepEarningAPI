@@ -15,9 +15,19 @@ class ImageController extends Controller
         *
         * @return Response
         */
-    public function store()
+    public function store(Request $request)
     {
-        //
+        $data = $request->validate([
+            'name'  => 'required|string',
+            'path' => 'required|string',
+            'type' => 'required|string',
+            'status' => 'required|integer',
+            'set_id' => 'required|exists:users,id'
+        ]);
+        $image = Image::create($data);
+        $image->save();
+
+        return response()->json(['msg'=> 'Image created!', 'data'=> $image]);
     }
 
     /**
@@ -26,9 +36,19 @@ class ImageController extends Controller
         * @param  int  $id
         * @return Response
         */
-    public function update($id)
+    public function update(Request $request, $id)
     {
-        //
+        $image = Image::findOrFail($id);
+
+        $data = $request->validate([
+            'name'  => 'string',
+            'path' => 'string',
+            'type' => 'string',
+            'status' => 'integer',
+            'set_id' => 'exists:users,id'
+        ]);
+        
+        $image->update($data);
     }
 
     /**
@@ -39,8 +59,11 @@ class ImageController extends Controller
         */
     public function destroy($id)
     {
-        //
+        $image = Image::findOrFail($id);
+        return $image->delete();
     }
+
+
 
     /**
         * Get the jsonified version of the resource
