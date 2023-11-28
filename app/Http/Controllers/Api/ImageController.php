@@ -21,15 +21,27 @@ class ImageController extends Controller
         
         $validator = Validator::make(request()->all(),[
             'name'  => 'required|string',
-            'path' => 'required|string',
             'type' => 'required|string',
             'status' => 'required|integer',
-            'set_id' => 'required|exists:sets,id'
+            'set_id' => 'required|exists:sets,id',
+            'image_data' => 'required|string'
         ]);
         if ($validator->fails()) {
             return response()->json(['error' => $validator->errors()], 422);
         }
+
+        //store the image
+        try{
+            $image_data = base64_decode($request->input('image_data'));
+            $image_name = time() . '_uploaded_image.' . $request->input('type');
+            file_put_contents(public_path('images/' . $image_name), $image_data);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 422);
+        }
+        
+
         $image = Image::create($request->all());
+        $image->path = '/images/' . $image_name;
         $image->save();
 
         return response()->json(['msg'=> 'Image created!', 'data'=> $image]);
@@ -47,8 +59,6 @@ class ImageController extends Controller
 
         $validator = Validator::make(request()->all(), [
             'name'  => 'string',
-            'path' => 'string',
-            'type' => 'string',
             'status' => 'integer',
             'set_id' => 'exists:sets,id'
         ]);
