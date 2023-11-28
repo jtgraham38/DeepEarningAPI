@@ -17,7 +17,13 @@ class SetController extends Controller
         */
     public function store(Request $request)
     {
-        $set = Set::create($request->input());
+        $data = $request->validate([
+            'name'  => 'required|string',
+            'description' => 'required|string',
+            'instructions' => 'required|string',
+            'status' => 'required|integer',
+        ]);
+        $set = Set::create($data);
         $set->save();
     }
 
@@ -40,7 +46,8 @@ class SetController extends Controller
         */
     public function destroy($id)
     {
-        
+        $set = Set::findOrFail($id);
+        return $set->delete();
     }
 
     /**
