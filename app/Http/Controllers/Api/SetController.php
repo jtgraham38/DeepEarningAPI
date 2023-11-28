@@ -75,7 +75,7 @@ class SetController extends Controller
         * @return Response
         */
     public function get($id){
-        $set = Set::findOrFail($id);
+        $set = Set::with('images', 'results')->findOrFail($id);
         return $set->toJson();
     }
 }

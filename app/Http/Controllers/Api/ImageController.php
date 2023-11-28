@@ -82,7 +82,7 @@ class ImageController extends Controller
         * @return Response
         */
         public function get($id){
-            $image = Image::findOrFail($id);
+            $image = Image::with('results')->findOrFail($id);
             return $image->toJson();
         }
 
