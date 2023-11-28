@@ -25,6 +25,7 @@ class SetController extends Controller
         ]);
         $set = Set::create($data);
         $set->save();
+        return response()->json(['msg'=> 'Set created!', 'data'=> $set]);
     }
 
     /**
@@ -45,6 +46,7 @@ class SetController extends Controller
         ]);
         
         $set->update($data);
+        return response()->json(['msg'=> 'Set updated!', 'data'=> $set]);
     }
 
     /**
@@ -56,7 +58,8 @@ class SetController extends Controller
     public function destroy($id)
     {
         $set = Set::findOrFail($id);
-        return $set->delete();
+        $set->delete();
+        return response()->json(['msg'=> 'Set deleted']);
     }
 
     /**
