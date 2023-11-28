@@ -20,6 +20,11 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::get('/', function () {
+    return request()->input('uno') * 7;
+});
+
+
 Route::resource('sets', SetController::class)->only([
     'store', 'update', 'destroy'
 ]);
