@@ -11,7 +11,7 @@ class Set extends Model
 {
     use HasFactory;
 
-    protected $guarded = ['id'];
+    protected $guarded = ['id','created_at', 'updated_at'];
 
     public function images(){
         return $this->hasMany(Image::class);
