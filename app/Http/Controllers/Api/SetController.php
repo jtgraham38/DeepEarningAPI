@@ -15,9 +15,10 @@ class SetController extends Controller
         *
         * @return Response
         */
-    public function store()
+    public function store(Request $request)
     {
-        //
+        $set = Set::create($request->input());
+        $set->save();
     }
 
     /**
@@ -39,7 +40,7 @@ class SetController extends Controller
         */
     public function destroy($id)
     {
-        //
+        
     }
 
     /**
