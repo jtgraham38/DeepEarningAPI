@@ -27,7 +27,7 @@ Route::get('/', function () {
 });
 
 
-Route::get('/sets/{id}', [SetController::class, 'get']);
+//Route::get('/sets/{id}', [SetController::class, 'get']);
 Route::resource('sets', SetController::class)->only([
     'store', 'update', 'destroy'
 ]);
