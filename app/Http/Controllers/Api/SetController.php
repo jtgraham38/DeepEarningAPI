@@ -40,6 +40,7 @@ class SetController extends Controller
         */
     public function update(Request $request, $id)
     {
+        return "askldjflk;dsafj";
         $set = Set::findOrFail($id);
 
         $validator = Validator::make(request()->all(),[
@@ -52,7 +53,7 @@ class SetController extends Controller
             return response()->json(['error' => $validator->errors()], 422);
         }
         $data = $validator->validated();
-        dd($data);
+        
         $set->update($data);
         $set->save();
         return response()->json(['msg'=> 'Set updated!', 'data'=> $set]);
