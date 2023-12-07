@@ -27,17 +27,17 @@ Route::get('/', function () {
 });
 
 
+Route::get('/sets/{id}', [SetController::class, 'get']);
 Route::resource('sets', SetController::class)->only([
     'store', 'update', 'destroy'
 ]);
-Route::get('/sets/{id}', [SetController::class, 'get']);
 
+Route::get('/results/{id}', [ResultController::class, 'get']);
 Route::resource('results', ResultController::class)->only([
     'store', 'update', 'destroy'
 ]);
-Route::get('/results/{id}', [ResultController::class, 'get']);
 
+Route::get('/images/{id}', [ImageController::class, 'get']);
 Route::resource('images', ImageController::class)->only([
     'store', 'update', 'destroy'
 ]);
-Route::get('/images/{id}', [ImageController::class, 'get']);
