@@ -67,6 +67,7 @@ class ImageController extends Controller
         }
         
         $image->update($request->all());
+        $image->save();
         return response()->json(['msg'=> 'Image updated!', 'data'=> $image]);
     }
 

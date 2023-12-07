@@ -70,6 +70,7 @@ class ResultController extends Controller
             }
             
             $result->update($request->all());
+            $result->save();
             return response()->json(['msg'=> 'Result updated!', 'data'=> $result]);
         }
     

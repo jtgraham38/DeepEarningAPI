@@ -53,6 +53,7 @@ class SetController extends Controller
         }
         
         $set->update($data);
+        $set->save();
         return response()->json(['msg'=> 'Set updated!', 'data'=> $set]);
     }
 
