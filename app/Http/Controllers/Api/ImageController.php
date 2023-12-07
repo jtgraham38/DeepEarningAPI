@@ -65,8 +65,8 @@ class ImageController extends Controller
         if ($validator->fails()) {
             return response()->json(['error' => $validator->errors()], 422);
         }
-        
-        $image->update($request->all());
+        $data = $validator->validated();
+        $image->update($data);
         $image->save();
         return response()->json(['msg'=> 'Image updated!', 'data'=> $image]);
     }

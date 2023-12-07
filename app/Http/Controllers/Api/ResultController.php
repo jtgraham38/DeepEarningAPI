@@ -68,8 +68,8 @@ class ResultController extends Controller
             if ($validator->fails()) {
                 return response()->json(['error' => $validator->errors()], 422);
             }
-            
-            $result->update($request->all());
+            $data = $validator->validated();
+            $result->update($data);
             $result->save();
             return response()->json(['msg'=> 'Result updated!', 'data'=> $result]);
         }
