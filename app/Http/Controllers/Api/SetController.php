@@ -53,7 +53,7 @@ class SetController extends Controller
             return response()->json(['error' => $validator->errors()], 422);
         }
         $data = $validator->validated();
-        
+        dd($data);
         $set->update($data);
         $set->save();
         return response()->json(['msg'=> 'Set updated!', 'data'=> $set]);
@@ -80,6 +80,7 @@ class SetController extends Controller
         */
     public function get($id){
         $set = Set::with('images', 'results')->findOrFail($id);
+        $dd("set", $set);
         return $set->toJson();
     }
 }
