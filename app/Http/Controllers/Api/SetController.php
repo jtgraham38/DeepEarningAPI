@@ -80,7 +80,7 @@ class SetController extends Controller
         */
     public function get($id){
         $set = Set::with('images', 'results')->findOrFail($id);
-        $dd("set", $set);
+        dd("set", $set);
         return $set->toJson();
     }
 }
