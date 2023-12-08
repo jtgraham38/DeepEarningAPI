@@ -81,7 +81,7 @@ class SetController extends Controller
         return $set->toJson();
     }
 
-    public function all($id){
+    public function all(){
         $sets = Set::with('images', 'results')->all();
         return $sets->toJson();
     }
