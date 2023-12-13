@@ -22,7 +22,7 @@ class ImageController extends Controller
         $validator = Validator::make(request()->all(),[
             'name'  => 'required|string',
             'type' => 'required|string',
-            'status' => 'required|integer',
+            //'status' => 'required|integer',
             //'set_id' => 'required|exists:sets,id',
             // TODO: COMMENTED FOR PROJECT SUBMISSION ONLY 'image_data' => 'required|string'
         ]);
