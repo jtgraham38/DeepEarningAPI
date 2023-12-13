@@ -42,7 +42,8 @@ class ImageController extends Controller
         
 
         $image = Image::create($request->all());
-        $image->path = '/images/' . $image->name;///TODO:  COMMENTED FOR SUBMISSION$image_name;
+        $image->name = $image_name;
+        $image->path = '/_images/' . $image->name;///TODO:  COMMENTED FOR SUBMISSION$image_name;
         $image->save();
 
         return response()->json(['msg'=> 'Image created!', 'data'=> $image]);
