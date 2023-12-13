@@ -24,7 +24,7 @@ class ImageController extends Controller
             'type' => 'required|string',
             'status' => 'required|integer',
             'set_id' => 'required|exists:sets,id',
-            'image_data' => 'required|string'
+            // TODO: COMMENTED FOR PROJECT SUBMISSION ONLY 'image_data' => 'required|string'
         ]);
         if ($validator->fails()) {
             return response()->json(['error' => $validator->errors()], 422);
