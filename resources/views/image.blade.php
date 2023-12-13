@@ -1,3 +1,3 @@
-<img src="{{asset(request()->input('image_name'))}}">
+<img src="{{asset($image_name)}}">
 
-@dump(request()->all())
+@dump($image_name)

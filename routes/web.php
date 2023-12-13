@@ -18,5 +18,5 @@ Route::get('/', function () {
 });
 
 Route::get('/images/{image_name}', function(){
-    return view('image');
+    return view('image', ['image_name' => $image_name]);
 });
