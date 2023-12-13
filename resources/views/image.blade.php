@@ -1,3 +1,3 @@
-<img src="{{ URL::to('/') }}/images/{{$image_name}}">
+<img src="https://deepearning.jacob-t-graham.com/images/{{$image_name}}">
 
 @dump($image_name)
