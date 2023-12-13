@@ -20,7 +20,7 @@ class ImageController extends Controller
     {
         
         $validator = Validator::make(request()->all(),[
-            'name'  => 'required|string',
+            //'name'  => 'required|string',
             'type' => 'required|string',
             'status' => 'required|integer',
             'set_id' => 'required|exists:sets,id',
