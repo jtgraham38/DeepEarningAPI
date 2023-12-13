@@ -24,7 +24,7 @@ class ImageController extends Controller
             'type' => 'required|string',
             'status' => 'required|integer',
             'set_id' => 'required|exists:sets,id',
-            'image_data' => 'required|string'
+            'image_data' => 'string'
         ]);
         if ($validator->fails()) {
             return response()->json(['error' => $validator->errors()], 422);
