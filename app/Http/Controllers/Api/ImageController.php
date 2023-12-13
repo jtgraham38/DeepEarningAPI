@@ -24,20 +24,20 @@ class ImageController extends Controller
             'type' => 'required|string',
             'status' => 'required|integer',
             'set_id' => 'required|exists:sets,id',
-            // TODO: COMMENTED FOR PROJECT SUBMISSION ONLY 'image_data' => 'required|string'
+            'image_data' => 'required|string'
         ]);
         if ($validator->fails()) {
             return response()->json(['error' => $validator->errors()], 422);
         }
 
         //store the image
-        // try{
-        //     $image_data = base64_decode($request->input('image_data'));
-        //     $image_name = time() . '_uploaded_image.' . $request->input('type');
-        //     file_put_contents(public_path('images/' . $image_name), $image_data);
-        // } catch (\Exception $e) {
-        //     return response()->json(['error' => $e->getMessage()], 422);
-        // }
+        try{
+            $image_data = base64_decode($request->input('image_data'));
+            $image_name = time() . '_uploaded_image.' . $request->input('type');
+            file_put_contents(public_path('images/' . $image_name), $image_data);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 422);
+        }
         //NOTE: THE ABOVE WAS COMMENTED FOR SUBMISSION ONLY, IT WORKS AND WILL BE USEFUL IF YOU CONTINUE THIS APP
         
 
