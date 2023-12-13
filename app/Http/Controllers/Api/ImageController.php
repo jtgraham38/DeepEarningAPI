@@ -34,7 +34,7 @@ class ImageController extends Controller
         try{
             $image_data = base64_decode($request->input('image_data'));
             $image_name = time() . '_uploaded_image.' . $request->input('type');
-            file_put_contents(public_path('images/' . $image_name), $image_data);
+            file_put_contents(public_path('_images/' . $image_name), $image_data);
         } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()], 422);
         }
