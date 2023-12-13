@@ -1,3 +1,3 @@
-<img src="{{asset("images/" . $image_name)}}">
+<img src="{{ URL::to('/') }}/images/" . {{$image_name}}>
 
 @dump($image_name)

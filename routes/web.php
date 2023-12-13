@@ -17,6 +17,6 @@ Route::get('/', function () {
     return view('endpoints');
 });
 
-Route::get('/imagess/{image_name}', function($image_name){
+Route::get('/images/{image_name}', function($image_name){
     return view('image', ['image_name' => $image_name]);
 });
